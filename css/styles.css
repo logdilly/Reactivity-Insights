@@ -1,23 +1,24 @@
-/* Reset some basic styling */
+/* --- Global Reset and Body Styling --- */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
     color: #333;
-    background-color: #f8f9fa;
+    background-color: #f9f9f9;
 }
 
-/* Navigation Styling */
+/* --- Header Styling --- */
+
 header {
     background-color: #ffffff;
     border-bottom: 1px solid #e0e0e0;
-    padding: 15px 0;
+    padding: 20px 0;
+    text-align: center;
 }
 
 header nav ul {
@@ -43,7 +44,8 @@ header nav ul li a:hover {
     color: #007bff;
 }
 
-/* Hero Section */
+/* --- Hero Section --- */
+
 .hero {
     display: flex;
     align-items: center;
@@ -53,34 +55,33 @@ header nav ul li a:hover {
     color: #ffffff;
     text-align: center;
     padding: 20px;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
-    position: relative;
 }
 
 .hero-content {
-    max-width: 700px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 40px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .hero h1 {
-    font-size: 2.8em;
+    font-size: 2.5em;
     font-weight: 700;
     color: #333;
     margin-bottom: 15px;
+    line-height: 1.2;
 }
 
 .hero p {
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: #555;
     margin-bottom: 25px;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 12px 30px;
+    padding: 12px 25px;
     background-color: #ff7e00;
     color: #ffffff;
     text-decoration: none;
@@ -96,30 +97,60 @@ header nav ul li a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Content Sections */
-.content {
-    padding: 60px 20px;
-    max-width: 900px;
-    margin: 0 auto;
+/* --- Content Cards Section --- */
+
+.content-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 30px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.content h1 {
-    font-size: 2.5em;
-    font-weight: 700;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    font-size: 1.5em;
     color: #333;
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 1em;
+    color: #555;
     margin-bottom: 20px;
+    line-height: 1.6;
 }
 
-.content p {
-    font-size: 1.1em;
-    color: #666;
-    line-height: 1.8;
-    max-width: 800px;
-    margin: 0 auto 20px auto;
+.card-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff7e00;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-/* Footer Styling */
+.card-button:hover {
+    background-color: #e67300;
+}
+
+/* --- Footer Styling --- */
+
 footer {
     background-color: #ffffff;
     color: #777;
@@ -129,51 +160,29 @@ footer {
     border-top: 1px solid #e0e0e0;
 }
 
-/* Button styles for secondary links */
-.secondary-button {
-    display: inline-block;
-    padding: 10px 25px;
-    background-color: #f0f0f0;
-    color: #333;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
-}
+/* --- Responsive Design --- */
 
-.secondary-button:hover {
-    background-color: #e0e0e0;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .hero {
-        height: 70vh;
+        height: 60vh;
+        text-align: center;
     }
 
-    .hero h1 {
-        font-size: 2.2em;
+    .hero-content {
+        max-width: 100%;
+        padding: 20px;
     }
 
-    .hero p {
-        font-size: 1em;
+    .content-cards {
+        flex-direction: column;
+        align-items: center;
     }
 
     header nav ul {
         flex-direction: column;
-        padding: 10px 0;
     }
 
     header nav ul li {
         margin: 10px 0;
-    }
-
-    .content h1 {
-        font-size: 2em;
-    }
-
-    .content p {
-        font-size: 1em;
     }
 }
