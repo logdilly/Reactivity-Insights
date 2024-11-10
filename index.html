@@ -15,14 +15,20 @@
       gtag('config', 'G-9LKX32E5P1');
     </script>
 
+    <!-- Link to Google Font for Merriweather -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
     <!-- Link to global styles.css for consistent styling across all pages -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Header -->
     <header>
-        <nav>
-            <ul>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <img src="css/images/ricologo.png" alt="Reactivity Insights Logo" class="logo">
+            </a>
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="product.html">Our Product</a></li>
@@ -33,10 +39,32 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <img src="css/images/hero.jpg" alt="Hero Background" class="hero-image">
         <div class="hero-content">
-            <h1>Welcome to Reactivity Insights</h1>
-            <p>Your journey to wellness starts here.</p>
-            <a href="about.html" class="cta-button">Learn More About Us</a>
+            <h1>Quiet the Food Noise</h1>
+            <p>Real-time, data-backed insights to make every step count.</p>
+            <a href="product.html" class="cta-button">
+                Learn More
+                <img src="css/images/whitebluearrow.png" alt="Arrow Icon" class="arrow-icon">
+            </a>
+        </div>
+    </section>
+
+    <!-- Section Header -->
+    <section class="food-noise-section">
+        <h1 class="section-header">Food Noise: What is it and why is it blowing up?</h1>
+
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+            <img src="css/images/oprah.png" alt="Food noise popularity with Oprah" class="gallery-image">
+        </div>
+
+        <!-- Explanation Text -->
+        <div class="explanation">
+            <h2>What is Food Noise?</h2>
+            <p>Food noise refers to the constant, intrusive thoughts about food that can disrupt daily life and make it challenging to maintain healthy eating habits.</p>
+            <h2>Why is it Popular?</h2>
+            <p>The concept of food noise is gaining attention due to the rise in awareness about mental health and eating habits.</p>
         </div>
     </section>
 
@@ -63,5 +91,25 @@
     <footer>
         <p>&copy; 2024 Reactivity Insights. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript for Scroll Animation -->
+    <script>
+        document.addEventListener("scroll", function() {
+            const images = document.querySelectorAll(".image-gallery img");
+            const scrollPosition = window.scrollY + window.innerHeight;
+
+            images.forEach((image) => {
+                const imagePosition = image.getBoundingClientRect().top + window.scrollY;
+
+                if (scrollPosition > imagePosition + 100) {
+                    image.style.opacity = 1;
+                    image.style.transform = "translateY(0)"; // Image comes into view
+                } else {
+                    image.style.opacity = 0;
+                    image.style.transform = "translateY(50px)"; // Image moves down when it leaves view
+                }
+            });
+        });
+    </script>
 </body>
 </html>

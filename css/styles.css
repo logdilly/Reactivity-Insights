@@ -1,5 +1,6 @@
 /* --- Global Reset and Body Styling --- */
 
+/* --- Global Reset and Body Styling --- */
 * {
     margin: 0;
     padding: 0;
@@ -7,17 +8,39 @@
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Merriweather', serif; /* Apply Merriweather font */
     color: #333;
-    background-color: #f9f9f9;
+    background: linear-gradient(135deg, #f9f9f9 70%, #00D2DC 95%, #00BDC0 100%); /* Updated lighter blue gradient */
+    background-attachment: fixed; /* Keep the background fixed during scroll */
+    background-size: cover; /* Cover the entire viewport */
 }
+
+
+
+/* --- Complex Gradient Background --- */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the gradient is behind all content */
+    background: /*radial-gradient(circle at top left, rgba(31, 98, 150, 0.8), transparent 40%), /* Gradient from blue to transparent */
+                radial-gradient(circle at bottom right, #11b8af, transparent 10%); /* Gradient from darker blue to transparent */
+    pointer-events: none; /* Allow interaction with underlying elements */
+}
+
+
+/* Other styles follow... */
+
 
 /* --- Header Styling --- */
 
 header {
     background-color: #ffffff;
     border-bottom: 1px solid #e0e0e0;
-    padding: 20px 0;
+    
     text-align: center;
 }
 
@@ -47,55 +70,95 @@ header nav ul li a:hover {
 /* --- Hero Section --- */
 
 .hero {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     height: 80vh;
-    background: url('../images/hero-background.jpg') no-repeat center center/cover;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
+    overflow: hidden;
+    border-radius: 30px;
+    margin-right: 60px;
+    margin-left: 60px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 40px; /* Ensure padding doesn’t add extra vertical space */
 }
 
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    z-index: 1;
+    opacity: 0.8; /* Adjust opacity for desired effect */
+}
+
+/* Hover effect for the entire hero-content box */
 .hero-content {
-    max-width: 600px;
+    position: relative;
+    z-index: 2; /* Ensure content is above the image */
+    max-width: 500px; /* Make the box wider */
+    padding: 30px; /* Increase padding for a bigger box */
+    text-align: center;
+    color: #333;
     background-color: rgba(255, 255, 255, 0.85);
-    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover */
 }
 
+.hero-content:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+
+/* Make the text inside the hero-content larger */
 .hero h1 {
-    font-size: 2.5em;
+    font-size: 2.5em; /* Increase font size for the heading */
     font-weight: 700;
-    color: #333;
-    margin-bottom: 15px;
+    /*color: #df6800;*/
+    color: #d3af37;
+    margin-bottom: 20px;
     line-height: 1.2;
 }
 
 .hero p {
-    font-size: 1.2em;
-    color: #555;
-    margin-bottom: 25px;
+    font-size: 1.2em; /* Increase font size for the paragraph */
+    color: #555555;
+    margin-bottom: 30px;
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: #ff7e00;
+    background-color: rgb(31, 98, 150);
     color: #ffffff;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px; /* Slightly adjust padding */
     font-weight: 600;
     font-size: 1em;
     border-radius: 5px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
 }
 
-.cta-button:hover {
-    background-color: #e67300;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+.cta-button .arrow-icon {
+    width: 48px;
+    height: auto;
+    margin-left: -3px; /* Adjust margin to create balanced spacing */
+    margin-right: -20px; /* Remove any extra space on the right */
 }
+
+
+.cta-button:hover {
+    background-color: #123d60; /* Darker blue on hover */
+}
+
+
 
 /* --- Content Cards Section --- */
 
@@ -137,16 +200,17 @@ header nav ul li a:hover {
 .card-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff7e00;
+    background-color: rgb(31, 98, 150); /* Set to same blue as .cta-button */
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Matching shadow for consistency */
 }
 
 .card-button:hover {
-    background-color: #e67300;
+    background-color: #123d60; /* Darker blue on hover */
 }
 
 /* --- Footer Styling --- */
@@ -185,4 +249,223 @@ footer {
     header nav ul li {
         margin: 10px 0;
     }
+}
+
+/* Hover effect for Navbar links */
+.nav-links a:hover {
+    color: rgba(89, 139, 184, 1); /* Blue color on hover */
+}
+
+/* Remove hover effect on entire navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f8f9fa; /* Default navbar color */
+    border-bottom: 1px solid #ddd;
+    height: 70px; /* Adjust if needed */
+}
+
+
+/* Logo Styling */
+/* Logo Styling */
+
+
+/* Navbar Styling */
+.navbar {
+    height: 70px; /* Adjust this as needed */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f8f9fa; /* Adjust color as needed */
+    border-bottom: 1px solid #ddd;
+}
+
+/* Nav Links Styling */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333; /* Adjust color as needed */
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+
+
+
+/* Hover effect for Navbar links */
+.nav-links a:hover {
+    color: rgba(89, 139, 184, 1); /* Blue color on hover */
+}
+
+
+
+
+/* Logo hover effect and clickable link */
+.logo-link:hover .logo {
+    filter: brightness(0) saturate(100%) invert(40%) sepia(20%) saturate(500%) hue-rotate(180deg) brightness(90%) contrast(100%);
+    transition: filter 0.3s ease; /* Smooth transition */
+}
+
+/* Add link to logo */
+.logo-link {
+    text-decoration: none;
+}
+
+/* Logo Styling */
+/* Logo Styling */
+.logo {
+    max-height: 80px; /* Adjust to desired logo height */
+    width: auto; /* Maintain aspect ratio */
+    transition: filter 0.3s ease;
+}
+
+/* Navbar link hover underline animation */
+.nav-links a {
+    position: relative;
+    color: #333; /* Default color */
+    font-weight: bold;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: rgba(89, 139, 184, 1); /* Blue color on hover */
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Position the line slightly below the text */
+    width: 100%;
+    height: 2px; /* Thickness of the line */
+    background-color: rgba(89, 139, 184, 1); /* Line color */
+    transform: scaleX(0); /* Initially hide the line */
+    transform-origin: bottom right;
+    transition: transform 0.3s ease; /* Smooth transition for the line */
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1); /* Show the line on hover */
+    transform-origin: bottom left;
+}
+
+/* Logo styling without underline */
+.logo-link {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo-link:hover {
+    color: rgba(89, 139, 184, 1); /* Blue color on hover */
+}
+
+/* --- Food Noise Section Styling --- */
+/* --- Food Noise Section Styling --- */
+
+/* --- Food Noise Section Styling --- */
+.food-noise-section {
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+/* Section Header */
+.section-header {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Image Gallery Styling */
+.image-gallery {
+    display: flex; /* Use flexbox to arrange images in a row */
+    flex-direction: row; /* Arrange images in a row */
+    justify-content: center; /* Center the images */
+    gap: 20px; /* Space between images */
+    margin-bottom: 40px; /* Space below the gallery */
+}
+
+.gallery-image {
+    width: 80%; /* Adjust width to make the images slightly smaller */
+    max-width: 300px; /* Set a max width for individual images */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits within the box without distortion */
+    border-radius: 10px; /* Optional: Add some border-radius for rounded corners */
+    transition: transform 0.3s ease, opacity 0.5s ease; /* Add opacity transition */
+    opacity: 0; /* Start with images hidden */
+    transform: translateY(20px); /* Start slightly lower */
+}
+
+.gallery-image.visible {
+    opacity: 1; /* Show image */
+    transform: translateY(0); /* Move to original position */
+}
+
+
+.image-grid {
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    width: 100%; /* Full width */
+    overflow: hidden; /* Hide overflow */
+}
+
+.image-grid img {
+    width: 100%; /* Make images full width */
+    max-width: 100%; /* Ensure they don't exceed container width */
+    height: auto; /* Maintain aspect ratio */
+    opacity: 0; /* Start hidden */
+    transform: translateY(50px); /* Start slightly moved down */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+    margin-bottom: 20px; /* Add spacing between images */
+}
+
+
+
+
+.gallery-image:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.gallery-image {
+    width: 90%; /* Make images a bit larger */
+    max-width: 1000px; /* Max width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image fits within the box without being distorted */
+    border-radius: 10px; /* Optional: Add some border-radius for rounded corners */
+}
+
+
+/* Explanation Text Styling */
+.explanation {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    color: #555;
+}
+
+.explanation h2 {
+    font-size: 1.8em;
+    color: #d3af37;
+    margin-bottom: 10px;
+}
+
+.explanation p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
 }
